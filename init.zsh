@@ -1,0 +1,20 @@
+p6df::modules::aws::version() { echo "0.0.1" }
+p6df::modules::aws::deps() { 
+	ModuleDeps=()
+}
+ 
+p6df::modules::aws::externali::brew() { 
+
+  brew tap wallix/awless
+  brew install awless
+
+  brew install awscli
+  brew install aws-shell
+}
+
+p6df::modules::aws::init() {
+
+  source <(awless completion zsh)
+}
+
+p6df::modules::aws::init
