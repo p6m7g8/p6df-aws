@@ -86,5 +86,3 @@ aws_sts_prompt_info() {
 	echo "sts:\t${green}$diff${norm}s"
     fi
 }
-
-p6df::modules::aws::init
