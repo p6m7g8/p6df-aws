@@ -1,5 +1,5 @@
 p6df::modules::aws::version() { echo "0.0.1" }
-p6df::modules::aws::deps() { 
+p6df::modules::aws::deps() {
 	ModuleDeps=(p6m7g8/p6aws)
 }
 
@@ -8,10 +8,10 @@ p6df::modules::aws::deps() {
 # awslabs
 # aws-samples
 # awscli
- 
+
 #  source <(awless completion zsh)
 
-p6df::modules::aws::externali::brew() { 
+p6df::modules::aws::external::brew() {
 
   brew tap wallix/awless
   brew install awless
@@ -22,6 +22,19 @@ p6df::modules::aws::externali::brew() {
 
 p6df::modules::aws::init() {
 
+    AWS_ORG=p6
+    export DAAS_JC_EMAIL=pgollucci@p6m7g8.com
+    export JC_EMAIL=pgollucci@p6m7g8.com
+
+    AWS_DIR=$HOME/.aws
+    AWS_ACCOUNT_MAP=$AWS_DIR/map-$AWS_ORG
+    AWS_CREDENTIAL_FILE=$AWS_DIR/credentials
+    AWS_ASSUMED_CREDENTIAL_FILE=$AWS_CREDENTIAL_FILE-assumed
+    AWS_SOURCE_CREDENTIAL_FILE=$AWS_CREDENTIAL_FILE-source
+
+    AWS_ROLE_SESSION_NAME=p6cli
+
+    alias sts="GLOBAL_p6_aws_sts_refresh"
 }
 
 p6df::prompt::aws::line() {
@@ -29,6 +42,11 @@ p6df::prompt::aws::line() {
   aws_sts_target_source_prompt_info
   aws_sts_source_prompt_info
   aws_sts_prompt_info
+}
+
+GLOBAL_p6_aws_sts_refresh() {
+
+  p6_aws_sts_refresh $AWS_CREDENTIAL_FILE $AWS_ACCOUNT_MAP $AWS_ORG $DAAS_JC_EMAIL
 }
 
 aws_sts_target_source_prompt_info() {
@@ -59,13 +77,13 @@ aws_sts_prompt_info() {
     local diff=$(($now-$mtime))
 
     if [ $diff -gt 7200 ]; then
-        echo ""
+	echo ""
     elif [ $diff -gt 3600 ]; then
-        echo "sts:\t${red}$diff${norm}s"
+	echo "sts:\t${red}$diff${norm}s"
     elif [ $diff -gt 3500 ]; then
-        echo "sts:\t${cyan}$diff${norm}s"
+	echo "sts:\t${cyan}$diff${norm}s"
     else
-        echo "sts:\t${green}$diff${norm}s"
+	echo "sts:\t${green}$diff${norm}s"
     fi
 }
 
