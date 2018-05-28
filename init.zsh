@@ -22,7 +22,7 @@ p6df::modules::aws::external::brew() {
 
 p6df::modules::aws::init() {
 
-    AWS_ORG=p6
+    AWS_ORG=$P6_AWS_ORG
     export DAAS_JC_EMAIL=pgollucci@p6m7g8.com
     export JC_EMAIL=pgollucci@p6m7g8.com
 
@@ -32,24 +32,30 @@ p6df::modules::aws::init() {
     AWS_ASSUMED_CREDENTIAL_FILE=$AWS_CREDENTIAL_FILE-assumed
     AWS_SOURCE_CREDENTIAL_FILE=$AWS_CREDENTIAL_FILE-source
 
-    AWS_ROLE_SESSION_NAME=p6cli
+    AWS_ROLE_SESSION_NAME=${AWS_ORG}cli
 
-    alias sts="GLOBAL_p6_aws_sts_refresh"
+    alias sts="p6_GLOBAL_aws_sts_svc_refresh"
+    alias aosu="p6_GLOBAL_aws_sts_svc_org_su"
 }
 
 p6df::prompt::aws::line() {
 
-  aws_sts_target_source_prompt_info
-  aws_sts_source_prompt_info
-  aws_sts_prompt_info
+  p6_aws_sts_target_source_prompt_info
+  p6_aws_sts_source_prompt_info
+  p6_aws_sts_prompt_info
 }
 
-GLOBAL_p6_aws_sts_refresh() {
+p6_GLOBAL_aws_sts_svc_refresh() {
 
-  p6_aws_sts_refresh $AWS_CREDENTIAL_FILE $AWS_ACCOUNT_MAP $AWS_ORG $DAAS_JC_EMAIL
+  p6_aws_sts_svc_refresh $AWS_CREDENTIAL_FILE $AWS_ACCOUNT_MAP $AWS_ORG $DAAS_JC_EMAIL
 }
 
-aws_sts_target_source_prompt_info() {
+p6_GLOBAL_aws_sts_svc_org_su() {
+  
+  p6_aws_sts_svc_org_su "$1" "us-east-1" "text" $AWS_ACCOUNT_MAP OrganizationAccountAccessRole $AWS_ROLE_SESSION_NAME $AWS_CREDENTIAL_FILE $AWS_SOURCE_CREDENTIAL_FILE $AWS_ASSUMED_CREDENTIAL_FILE
+}
+
+p6_aws_sts_target_source_prompt_info() {
 
   local assumed=
   if [ -n "$AWS_SOURCE_DEFAULT_PROFILE" ]; then
@@ -60,29 +66,29 @@ aws_sts_target_source_prompt_info() {
   fi
 }
 
-aws_sts_source_prompt_info() {
+p6_aws_sts_source_prompt_info() {
 
   if [ -n "$AWS_SOURCE_DEFAULT_PROFILE" ]; then
     echo "aws:\tSOURCE:[$AWS_SOURCE_DEFAULT_PROFILE($AWS_SOURCE_ENV/$SOURCE_ENV_LEVEL) - $AWS_SOURCE_DEFAULT_REGION($AWS_VPC)]"
   fi
 }
 
-aws_sts_prompt_info() {
+p6_aws_sts_prompt_info() {
 
     local creds=~/.aws/credentials
     [ -e $creds ] || return
 
-    local mtime=$(mtime "$creds")
-    local now=$(now)
+    local mtime=$(p6_dt_mtime "$creds")
+    local now=$(p6_dt_now_epoch_seconds)
     local diff=$(($now-$mtime))
 
     if [ $diff -gt 7200 ]; then
 	echo ""
     elif [ $diff -gt 3600 ]; then
-	echo "sts:\t${red}$diff${norm}s"
+	echo "sts:\t$diff"
     elif [ $diff -gt 3500 ]; then
-	echo "sts:\t${cyan}$diff${norm}s"
+	echo "sts:\t$diff"
     else
-	echo "sts:\t${green}$diff${norm}s"
+	echo "sts:\t$diff"
     fi
 }
