@@ -22,9 +22,10 @@ p6df::modules::aws::external::brew() {
 
 p6df::modules::aws::init() {
 
-    AWS_ORG=$P6_AWS_ORG
     export DAAS_JC_EMAIL=pgollucci@p6m7g8.com
     export JC_EMAIL=pgollucci@p6m7g8.com
+
+    AWS_ORG=$P6_AWS_ORG
 
     AWS_DIR=$HOME/.aws
     AWS_ACCOUNT_MAP=$AWS_DIR/map-$AWS_ORG
@@ -32,17 +33,12 @@ p6df::modules::aws::init() {
     AWS_ASSUMED_CREDENTIAL_FILE=$AWS_CREDENTIAL_FILE-assumed
     AWS_SOURCE_CREDENTIAL_FILE=$AWS_CREDENTIAL_FILE-source
 
-    AWS_ROLE_SESSION_NAME=${AWS_ORG}cli
+    AWS_ROLE_SESSION_NAME=$DAAS_JC_EMAIL
 
     alias sts="p6_GLOBAL_aws_sts_svc_refresh"
     alias aosu="p6_GLOBAL_aws_sts_svc_org_su"
-}
-
-p6df::prompt::aws::line() {
-
-  p6_aws_sts_target_source_prompt_info
-  p6_aws_sts_source_prompt_info
-  p6_aws_sts_prompt_info
+    alias asu="p6_GLOBAL_aws_sts_svc_role_assume"
+    alias assh="p6_GLOBAL_aws_ssh_svc_do"
 }
 
 p6_GLOBAL_aws_sts_svc_refresh() {
@@ -53,6 +49,23 @@ p6_GLOBAL_aws_sts_svc_refresh() {
 p6_GLOBAL_aws_sts_svc_org_su() {
   
   p6_aws_sts_svc_org_su "$1" "us-east-1" "text" $AWS_ACCOUNT_MAP OrganizationAccountAccessRole $AWS_ROLE_SESSION_NAME $AWS_CREDENTIAL_FILE $AWS_SOURCE_CREDENTIAL_FILE $AWS_ASSUMED_CREDENTIAL_FILE
+}
+
+p6_GLOBAL_aws_sts_svc_role_assume() {
+  
+  p6_aws_sts_svc_role_assume "$2" "us-east-1" "text" "$1" $AWS_ROLE_SESSION_NAME $AWS_CREDENTIAL_FILE $AWS_SOURCE_CREDENTIAL_FILE $AWS_ASSUMED_CREDENTIAL_FILE
+}
+
+p6_GLOBAL_aws_ssh_svc_do() {
+
+ p6_aws_ssh_svc_do ${1}.p6m7g8.net
+}
+
+p6df::prompt::aws::line() {
+
+  p6_aws_sts_target_source_prompt_info
+  p6_aws_sts_source_prompt_info
+  p6_aws_sts_prompt_info $AWS_CREDENTIAL_FILE
 }
 
 p6_aws_sts_target_source_prompt_info() {
@@ -74,9 +87,9 @@ p6_aws_sts_source_prompt_info() {
 }
 
 p6_aws_sts_prompt_info() {
+    local creds="$1"
 
-    local creds=~/.aws/credentials
-    [ -e $creds ] || return
+    p6_file_exists $creds || return
 
     local mtime=$(p6_dt_mtime "$creds")
     local now=$(p6_dt_now_epoch_seconds)
