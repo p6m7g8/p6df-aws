@@ -2,34 +2,104 @@
 
 whoami =
   !f() {
-    aws sts get-caller-identity
+   . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload sts
+    p6_aws_sts_caller_identity_get
   }; f
 
+list-sgs =
+  !f() {
+   . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload ec2
+    p6_aws_ec2_svc_sgs_list
+  }; f
+
+list-role-policies =
+  !f() {
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload iam
+    p6_aws_iam_svc_role_policies
+  }; f
+
+list-roles =
+  !f() {
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload iam
+    p6_aws_iam_svc_roles_list
+  }; f
+
+list-users =
+  !f() {
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload iam
+    p6_aws_iam_svc_users_list
+  }; f
+
+list-instances =
+  !f() {
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload ec2
+    p6_aws_ec2_svc_instances_list
+  }; f
+
+list-enis =
+  !f() {
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload ec2
+    p6_aws_ec2_svc_eni_list
+  }; f
+
+list-ebs =
+  !f() {
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload ec2
+    p6_aws_ec2_svc_volumes_list
+  }; f
+
+list-amis =
+  !f() {
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload ec2
+    p6_aws_ec2_svc_amis_list
+  }; f
+
+list-vpcs =
+  !f() {
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload ec2
+    p6_aws_ec2_svc_vpcs_list
+  }; f
+
+list-subnets =
+  !f() {
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload ec2
+    p6_aws_ec2_svc_subnets_list
+  }; f
+
+bucket-policy =
+  !f() {
+    local bucket="$1"
+
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload s3api
+    p6_aws_s3_svc_bucket_policy "$bucket" | python -mjson.tool
+  }; f
+
+list-bucket =
+  !f() {
+    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload s3
+    p6_aws_s3_svc_bucket_list
+  }; f
+
+# XXX: redo
 list-sg-rules =
   !f() {
     sg_show.pl --security-group-id "$1"
   }; f
 
-list-sgs =
-  !f() {
-    aws --output text ec2 describe-security-groups --query "SecurityGroups[].[GroupId, VpcId, GroupName]"
-  }; f
-
-list-role-policies =
-  !f() {
-     aws --output text iam list-attached-role-policies --role-name $1 --query 'AttachedPolicies[].[PolicyName]'
-  }; f
-
-list-roles =
-  !f() {
-    aws --output text iam list-roles --query "Roles[].[RoleId,RoleName,Arn]"
-  }; f
-
-list-users =
-  !f() {
-    aws --output text iam list-users --query "Users[].[UserId,UserName,Arn]"
-  }; f
-
+# XXX: refactor below
 list-caches =
   !f() {
      aws --output text elasticache describe-cache-clusters --query "CacheClusters[].[CacheClusterStatus, PreferredAvailabilityZone, CacheNodeType, EngineVersion, Engine, CacheSubnetGroupName, ConfigurationEndpoint.Address]"
@@ -53,46 +123,6 @@ list-asgs =
 list-asg-act =
   !f() {
     aws --output text autoscaling describe-scaling-activities --query "Activities[].[StatusCode, Description, Details, AutoScalingGroupName]"
-  }; f
-
-list-instances =
-  !f() {
-    aws --output text ec2 describe-instances --query 'Reservations[].Instances[].[InstanceId, ImageId, InstanceType, SubnetId, Placement.AvailabilityZone, NetworkInterfaces[0].PrivateIpAddress, KeyName, Tags[?Key==`Name`].Value | [0], IamInstanceProfile.Arn]'
-  }; f
-
-list-enis =
-  !f() {
-    aws --output text ec2 describe-network-interfaces --query "NetworkInterfaces[].[NetworkInterfaceId, VpcId, SubnetId, AvailabilityZone, PrivateIpAddress, Status, Association.PublicIp, TagSet[0].Value]"
-  }; f
-
-list-ebs =
-  !f() {
-    aws --output text ec2 describe-volumes --query 'Volumes[].[VolumeId, Tags[?Key==`Name`].Value | [0], State, Size, AvailabilityZone]'
-  }; f
-
-list-amis =
-  !f() {
-    aws --output text ec2 describe-images --owners self --query "Images[*].[ImageId, Name, CreationDate]" | sort -k 2
-  }; f
-
-list-vpcs =
-  !f() {
-    aws --output text ec2 describe-vpcs --query 'Vpcs[].[VpcId, Tags[?Key==`Name`].Value | [0], CidrBlock, State]' --filters "Name=isDefault,Values=false"
-  }; f
-
-list-subnets =
-  !f() {
-    aws --output text ec2 describe-subnets --query 'Subnets[].[VpcId, SubnetId, AvailabilityZone, CidrBlock, AvailableIpAddressCount, Tags[?Key==`Name`].Value | [0]]'
-  }; f
-
-bucket-policy =
-  !f() {
-    aws --output text s3api get-bucket-policy --bucket ${1} | python -mjson.tool
-  }; f
-
-list-bucket =
-  !f() {
-    aws s3 ls s3://${1} --recursive --human-readable --summarize
   }; f
 
 poll-last-cft =
