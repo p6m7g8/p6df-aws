@@ -2,77 +2,77 @@
 
 whoami =
   !f() {
-   . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+   . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload sts
     p6_aws_sts_caller_identity_get
   }; f
 
 list-sgs =
   !f() {
-   . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+   . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_sgs_list
   }; f
 
 list-role-policies =
   !f() {
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload iam
     p6_aws_iam_svc_role_policies
   }; f
 
 list-roles =
   !f() {
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload iam
     p6_aws_iam_svc_roles_list
   }; f
 
 list-users =
   !f() {
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload iam
     p6_aws_iam_svc_users_list
   }; f
 
 list-instances =
   !f() {
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_instances_list
   }; f
 
 list-enis =
   !f() {
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_eni_list
   }; f
 
 list-ebs =
   !f() {
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_volumes_list
   }; f
 
 list-amis =
   !f() {
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_amis_list
   }; f
 
 list-vpcs =
   !f() {
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_vpcs_list
   }; f
 
 list-subnets =
   !f() {
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_subnets_list
   }; f
@@ -81,14 +81,14 @@ bucket-policy =
   !f() {
     local bucket="$1"
 
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload s3api
     p6_aws_s3_svc_bucket_policy "$bucket" | python -mjson.tool
   }; f
 
 list-bucket =
   !f() {
-    . $P6_DFZ_DATA_PARENT/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_DATA_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload s3
     p6_aws_s3_svc_bucket_list
   }; f
