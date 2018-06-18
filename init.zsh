@@ -20,6 +20,11 @@ p6df::modules::aws::external::brew() {
   brew install aws-shell
 }
 
+p6df::modules::aws::home::symlink() { 
+
+ # XXX: symlink to private
+}
+
 p6df::modules::aws::init() {
 
     export DAAS_JC_EMAIL=pgollucci@p6m7g8.com
