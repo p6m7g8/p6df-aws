@@ -7,7 +7,6 @@ p6df::modules::aws::deps() {
 # awsdocs
 # awslabs
 # aws-samples
-# awscli
 
 #  source <(awless completion zsh)
 
@@ -20,19 +19,17 @@ p6df::modules::aws::external::brew() {
   brew install aws-shell
 }
 
-p6df::modules::aws::home::symlink() { 
+p6df::modules::aws::home::symlink() {
 
  # XXX: symlink to private
+ true;
 }
 
 p6df::modules::aws::init() {
 
-    export DAAS_JC_EMAIL=pgollucci@p6m7g8.com
-    export JC_EMAIL=pgollucci@p6m7g8.com
-
-    AWS_ORG=$P6_AWS_ORG
-
     AWS_DIR=$HOME/.aws
+    AWS_ORG=$P6_AWS_ORG
+    
     AWS_ACCOUNT_MAP=$AWS_DIR/map-$AWS_ORG
     AWS_CREDENTIAL_FILE=$AWS_DIR/credentials
     AWS_ASSUMED_CREDENTIAL_FILE=$AWS_CREDENTIAL_FILE-assumed
@@ -41,36 +38,57 @@ p6df::modules::aws::init() {
     AWS_ROLE_SESSION_NAME=$DAAS_JC_EMAIL
 
     alias sts="p6_GLOBAL_aws_sts_svc_refresh"
+    alias ac="p6_GLOBAL_aws_organizations_svc_account_make"
+    alias asc="p6_GLOBAL_aws_shortcuts"
     alias aosu="p6_GLOBAL_aws_sts_svc_org_su"
     alias asu="p6_GLOBAL_aws_sts_svc_role_assume"
     alias assh="p6_GLOBAL_aws_ssh_svc_do"
-}
-
-p6_GLOBAL_aws_sts_svc_refresh() {
-
-  p6_aws_sts_svc_refresh $AWS_CREDENTIAL_FILE $AWS_ACCOUNT_MAP $AWS_ORG $DAAS_JC_EMAIL
-}
-
-p6_GLOBAL_aws_sts_svc_org_su() {
-  
-  p6_aws_sts_svc_org_su "$1" "us-east-1" "text" $AWS_ACCOUNT_MAP OrganizationAccountAccessRole $AWS_ROLE_SESSION_NAME $AWS_CREDENTIAL_FILE $AWS_SOURCE_CREDENTIAL_FILE $AWS_ASSUMED_CREDENTIAL_FILE
-}
-
-p6_GLOBAL_aws_sts_svc_role_assume() {
-  
-  p6_aws_sts_svc_role_assume "$2" "us-east-1" "text" "$1" $AWS_ROLE_SESSION_NAME $AWS_CREDENTIAL_FILE $AWS_SOURCE_CREDENTIAL_FILE $AWS_ASSUMED_CREDENTIAL_FILE
-}
-
-p6_GLOBAL_aws_ssh_svc_do() {
-
- p6_aws_ssh_svc_do ${1}.p6m7g8.net
 }
 
 p6df::prompt::aws::line() {
 
   p6_aws_sts_target_source_prompt_info
   p6_aws_sts_source_prompt_info
-  p6_aws_sts_prompt_info $AWS_CREDENTIAL_FILE
+  p6_aws_sts_prompt_info "$AWS_CREDENTIAL_FILE"
+}
+
+p6_GLOBAL_aws_shortcuts() {
+    p6_aws_shortcuts "$AWS_ORG" "$AWS_CREDENTIAL_FILE"
+}
+
+p6_GLOBAL_aws_organizations_svc_account_make() {
+    local account_alias="$1"
+
+    local email="pgollucci+aws+$account_alias@p6m7g8.com"
+
+    p6_aws_organizations_svc_account_make "$AWS_CREDENTIAL_FILE" "$AWS_SOURCE_CREDENTIAL_FILE" "$AWS_ASSUMED_CREDENTIAL_FILE" "$AWS_ORG" \
+					  "$account_alias" "$email" "$AWS_ACCOUNT_MAP" "JumpCloud" "$DAAS_JC_EMAIL" \
+					  "us-east-1" "text" \
+					  "/SSO/SSO_Admin" "arn:aws:iam::aws:policy/AdministratorAccess" \
+					  "/C=US/ST=MD/L=Upper_Marlboro/O=$AWS_ORG/OU=Technology/CN=$account_alias" \
+					  "4096" "1024"
+}
+
+p6_GLOBAL_aws_sts_svc_refresh() {
+
+  p6_aws_sts_svc_refresh "$AWS_CREDENTIAL_FILE" "$AWS_ACCOUNT_MAP" "$AWS_ORG" "$DAAS_JC_EMAIL"
+}
+
+p6_GLOBAL_aws_sts_svc_org_su() {
+  local org="$1"
+
+  p6_aws_sts_svc_org_su "$org" "us-east-1" "text" "$AWS_ACCOUNT_MAP" "OrganizationAccountAccessRole" "$AWS_ROLE_SESSION_NAME" "$AWS_CREDENTIAL_FILE" "$AWS_SOURCE_CREDENTIAL_FILE" "$AWS_ASSUMED_CREDENTIAL_FILE"
+}
+
+p6_GLOBAL_aws_sts_svc_role_assume() {
+
+  p6_aws_sts_svc_role_assume "$2" "us-east-1" "text" "$1" $AWS_ROLE_SESSION_NAME $AWS_CREDENTIAL_FILE $AWS_SOURCE_CREDENTIAL_FILE $AWS_ASSUMED_CREDENTIAL_FILE
+}
+
+p6_GLOBAL_aws_ssh_svc_do() {
+ local host="$1"
+
+ p6_aws_ssh_svc_do "${host}.p6m7g8.net"
 }
 
 p6_aws_sts_target_source_prompt_info() {
