@@ -96,9 +96,19 @@ list-bucket =
 list-org-accounts =
   !f() {
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
-    p6_aws_util_cli_qload s3
+    p6_aws_util_cli_qload organizations
     p6_aws_organizations_svc_accounts_list
   }; f
+
+list-cfts =
+  !f() {
+      . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload cloudformation
+    p6_aws_cloudformation_svc_list
+  }; f
+
+
+
 
 # XXX: redo
 list-sg-rules =
@@ -153,10 +163,6 @@ list-cft-events =
     done
   }; f
 
-list-cfts =
-  !f() {
-    aws --output text cloudformation describe-stacks --query "Stacks[*].[CreationTime, StackStatus, StackName]" | sort -k 1,1 -nr
-  }; f
 
 list-rdss =
   !f() {
