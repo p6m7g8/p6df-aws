@@ -93,6 +93,13 @@ list-bucket =
     p6_aws_s3_svc_bucket_list
   }; f
 
+list-org-accounts =
+  !f() {
+    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload s3
+    p6_aws_organizations_svc_accounts_list
+  }; f
+
 # XXX: redo
 list-sg-rules =
   !f() {

@@ -3,10 +3,11 @@ p6df::modules::aws::deps() { ModuleDeps=(p6m7g8/p6aws) }
 
 # aws
 # awsdocs
-# awslabs
 # aws-samples
 
 #  source <(awless completion zsh)
+
+# aws cloudformation validate-template
 
 p6df::modules::aws::external::brew() {
 
@@ -20,6 +21,25 @@ p6df::modules::aws::external::brew() {
   brew install aws-sam-cli
 
   brew install aws-shell
+
+  brew install cfn-lint
+}
+
+p6df::modules::aws::langs() {
+
+  # ruby
+  gem install cfn-nag
+
+  # node
+  npm install -g aws-cdk
+
+  # python
+  pip install taskcat
+
+  for p in $(pip search aws-cdk | awk '{print $1}' | grep aws-cdk | sort); do
+      echo "====> $p"
+      pip install -q $p
+  done
 }
 
 p6df::modules::aws::home::symlink() {
@@ -81,7 +101,11 @@ p6_GLOBAL_aws_sts_svc_org_su() {
   local org="$1"
 
   p6_aws_organizations_svc_su "$org" "$AWS_ACCOUNT_MAP" "us-east-1" "text" "OrganizationAccountAccessRole" "$AWS_ROLE_SESSION_NAME" "$AWS_CREDENTIAL_FILE" "$AWS_SOURCE_CREDENTIAL_FILE" "$AWS_ASSUMED_CREDENTIAL_FILE"
-#  p6_aws_sts_svc_org_su "$org" "us-east-1" "text" "$AWS_ACCOUNT_MAP" "OrganizationAccountAccessRole" "$AWS_ROLE_SESSION_NAME" "$AWS_CREDENTIAL_FILE" "$AWS_SOURCE_CREDENTIAL_FILE" "$AWS_ASSUMED_CREDENTIAL_FILE"
+}
+
+p6_GOBAL_aws_sts_svc_org_su_un() {
+
+  p6_aws_organizations_svc_su_un "$AWS_CREDENTIAL_FILE" "$AWS_SOURCE_CREDENTIAL_FILE" "$AWS_ASSUMED_CREDENTIAL_FILE"
 }
 
 p6_GLOBAL_aws_sts_svc_role_assume() {
