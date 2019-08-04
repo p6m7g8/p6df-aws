@@ -14,6 +14,13 @@ list-sgs =
     p6_aws_ec2_svc_sgs_list
   }; f
 
+list-sg-rules =
+  !f() {
+     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload ec2
+    p6_aws_ec2_svc_sg_show "$1"
+  }; f
+
 list-role-policies =
   !f() {
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
@@ -102,18 +109,9 @@ list-org-accounts =
 
 list-cfts =
   !f() {
-      . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload cloudformation
     p6_aws_cloudformation_svc_list
-  }; f
-
-
-
-
-# XXX: redo
-list-sg-rules =
-  !f() {
-    sg_show.pl --security-group-id "$1"
   }; f
 
 # XXX: refactor below

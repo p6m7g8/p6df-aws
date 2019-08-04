@@ -103,7 +103,7 @@ p6_GLOBAL_aws_sts_svc_org_su() {
   p6_aws_organizations_svc_su "$org" "$AWS_ACCOUNT_MAP" "us-east-1" "text" "OrganizationAccountAccessRole" "$AWS_ROLE_SESSION_NAME" "$AWS_CREDENTIAL_FILE" "$AWS_SOURCE_CREDENTIAL_FILE" "$AWS_ASSUMED_CREDENTIAL_FILE"
 }
 
-p6_GOBAL_aws_sts_svc_org_su_un() {
+p6_GLOBAL_aws_sts_svc_org_su_un() {
 
   p6_aws_organizations_svc_su_un "$AWS_CREDENTIAL_FILE" "$AWS_SOURCE_CREDENTIAL_FILE" "$AWS_ASSUMED_CREDENTIAL_FILE"
 }
