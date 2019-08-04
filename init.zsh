@@ -29,17 +29,23 @@ p6df::modules::aws::langs() {
 
   # ruby
   gem install cfn-nag
+  rbenv rehash
 
   # node
   npm install -g aws-cdk
+  npm install -g typescript
+  nodenv rehash
 
   # python
   pip install taskcat
+  pyenv rehash
 
-  for p in $(pip search aws-cdk | awk '{print $1}' | grep aws-cdk | sort); do
-      echo "====> $p"
-      pip install -q $p
-  done
+  # XXX: typescript instead
+  # for p in $(pip search aws-cdk | awk '{print $1}' | grep aws-cdk | sort); do
+  #    echo "====> $p"
+  #    pip install -q $p
+  # done
+  # pyenv rehash
 }
 
 p6df::modules::aws::home::symlink() {
