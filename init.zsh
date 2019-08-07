@@ -39,13 +39,6 @@ p6df::modules::aws::langs() {
   # python
   pip install taskcat
   pyenv rehash
-
-  # XXX: typescript instead
-  # for p in $(pip search aws-cdk | awk '{print $1}' | grep aws-cdk | sort); do
-  #    echo "====> $p"
-  #    pip install -q $p
-  # done
-  # pyenv rehash
 }
 
 p6df::modules::aws::home::symlink() {
