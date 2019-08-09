@@ -28,10 +28,14 @@ p6df::modules::aws::external::brew() {
 p6df::modules::aws::langs() {
 
   # ruby
+  gem install
   gem install cfn-nag
   rbenv rehash
 
   # node
+  npm install -g aws-sdk
+  npm install -g uuid
+
   npm install -g aws-cdk
   npm install -g typescript
   nodenv rehash
@@ -39,6 +43,9 @@ p6df::modules::aws::langs() {
   # python
   pip install taskcat
   pyenv rehash
+
+  # go
+  go get github.com/aws/aws-sdk-go
 }
 
 p6df::modules::aws::home::symlink() {
