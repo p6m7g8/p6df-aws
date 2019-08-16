@@ -1,13 +1,7 @@
 p6df::modules::aws::version() { echo "0.0.1" }
 p6df::modules::aws::deps() { ModuleDeps=(p6m7g8/p6aws) }
 
-# aws
-# awsdocs
-# aws-samples
-
 #  source <(awless completion zsh)
-
-# aws cloudformation validate-template
 
 p6df::modules::aws::external::brew() {
 
@@ -42,6 +36,7 @@ p6df::modules::aws::langs() {
 
   # python
   pip install taskcat
+  pip install wheel
   pyenv rehash
 
   # go
@@ -64,6 +59,25 @@ p6df::modules::aws::init() {
   AWS_SOURCE_CREDENTIAL_FILE=$AWS_CREDENTIAL_FILE-source
 
   AWS_ROLE_SESSION_NAME=$DAAS_JC_EMAIL
+
+  p6df::modules::aws::p6aliases
+  p6df::modules::aws::cdkaliases
+}
+
+p6df::modules::aws::cdkaliases() {
+
+  # runs an npm script via lerna for a the current module
+  alias lr='lerna run --stream --scope $(node -p "require(\"./package.json\").name")'
+
+  # runs "npm run build" (build + test) for the current module
+  alias lb='lr build'
+  alias lt='lr test'
+
+  # runs "npm run watch" for the current module (recommended to run in a separate terminal session):
+  alias lw='lr watch'
+}
+
+p6df::modules::aws::p6aliases() {
 
   alias sts="p6_GLOBAL_aws_sts_svc_refresh"
   alias ac="p6_GLOBAL_aws_organizations_svc_account_make"
