@@ -2,6 +2,11 @@ p6df::modules::aws::version() { echo "0.0.1" }
 p6df::modules::aws::deps() { ModuleDeps=(p6m7g8/p6aws) }
 
 #  source <(awless completion zsh)
+# aws-google-auth
+# aws-keychain
+# aws-okta
+# awslogs
+# kube-aws
 
 p6df::modules::aws::external::brew() {
 
