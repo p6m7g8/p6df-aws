@@ -114,30 +114,54 @@ list-cfts =
     p6_aws_cloudformation_svc_list
   }; f
 
-# XXX: refactor below
-list-caches =
-  !f() {
-     aws --output text elasticache describe-cache-clusters --query "CacheClusters[].[CacheClusterStatus, PreferredAvailabilityZone, CacheNodeType, EngineVersion, Engine, CacheSubnetGroupName, ConfigurationEndpoint.Address]"
-  }; f
-
-list-elbs =
-  !f() {
-    aws --output text elb describe-load-balancers --query "LoadBalancerDescriptions[].[Scheme, LoadBalancerName, join(',', Subnets[]), join(',', AvailabilityZones[]), join(',', SecurityGroups[]), join(',',Instances[].InstanceId)]"
-  }; f
-
-list-elb-listeners =
-  !f() {
-    lb_listeners.pl --elb-id "$1"
-  }; f
-
 list-asgs =
   !f() {
-    aws --output text autoscaling describe-auto-scaling-groups --query "AutoScalingGroups[].[LoadBalancerNames[0], MinSize, MaxSize, DesiredCapacity, join(',', AvailabilityZones[]), AutoScalingGroupName]"
+    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload autoscaling
+    p6_aws_autoscaling_svc_asgs_list
   }; f
 
 list-asg-act =
   !f() {
-    aws --output text autoscaling describe-scaling-activities --query "Activities[].[StatusCode, Description, Details, AutoScalingGroupName]"
+    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload autoscaling
+    p6_aws_autoscaling_svc_asg_act_list
+  }; f
+
+list-elbs =
+  !f() {
+    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload ec2
+    p6_aws_ec2_svc_elb_list
+  }; f
+
+list-elb-listeners =
+!f() {
+    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+    p6_aws_util_cli_qload ec2
+    p6_aws_ec2_svc_elb_listeners_list
+  }; f
+
+# albs
+# alb listeners
+# alb rules
+# target groups
+
+
+
+
+
+
+
+
+
+
+
+
+# XXX: refactor below
+list-caches =
+  !f() {
+     aws --output text elasticache describe-cache-clusters --query "CacheClusters[].[CacheClusterStatus, PreferredAvailabilityZone, CacheNodeType, EngineVersion, Engine, CacheSubnetGroupName, ConfigurationEndpoint.Address]"
   }; f
 
 poll-last-cft =
@@ -160,7 +184,6 @@ list-cft-events =
 	sleep 5
     done
   }; f
-
 
 list-rdss =
   !f() {
