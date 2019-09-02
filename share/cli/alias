@@ -125,21 +125,21 @@ list-asg-act =
   !f() {
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload autoscaling
-    p6_aws_autoscaling_svc_asg_act_list
+    p6_aws_autoscaling_svc_asg_act_list "$@"
   }; f
 
 list-elbs =
   !f() {
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
-    p6_aws_util_cli_qload ec2
-    p6_aws_ec2_svc_elb_list
+    p6_aws_util_cli_qload elb
+    p6_aws_elb_svc_list
   }; f
 
 list-elb-listeners =
-!f() {
+  !f() {
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
-    p6_aws_util_cli_qload ec2
-    p6_aws_ec2_svc_elb_listeners_list
+    p6_aws_util_cli_qload elb
+    p6_aws_ec2_svc_elb_listeners_list "$@"
   }; f
 
 # albs
