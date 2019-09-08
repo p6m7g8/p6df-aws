@@ -10,24 +10,23 @@ p6df::modules::aws::deps() { ModuleDeps=(p6m7g8/p6aws) }
 
 p6df::modules::aws::external::brew() {
 
+  brew install awscli
+
+  brew install aws-shell
   brew tap wallix/awless
   brew install awless
 
-  brew install awscli
   brew install aws-iam-authenticator
+
+  brew install cfn-lint
 
   brew tap aws/tap
   brew install aws-sam-cli
-
-  brew install aws-shell
-
-  brew install cfn-lint
 }
 
 p6df::modules::aws::langs() {
 
   # ruby
-  gem install
   gem install cfn-nag
   rbenv rehash
 
@@ -35,17 +34,22 @@ p6df::modules::aws::langs() {
   npm install -g aws-sdk
   npm install -g uuid
 
-  npm install -g aws-cdk
   npm install -g typescript
+  npm install -g aws-cdk
   nodenv rehash
 
   # python
   pip install taskcat
-  pip install wheel
   pyenv rehash
 
   # go
   go get github.com/aws/aws-sdk-go
+
+  # cdk pack
+  brew install maven
+  brew install dotnet-sdk
+  pip install twine
+  pyenv rehash
 }
 
 p6df::modules::aws::home::symlink() {
