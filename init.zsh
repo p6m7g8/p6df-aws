@@ -12,16 +12,19 @@ p6df::modules::aws::external::brew() {
 
   brew install awscli
 
-  brew install aws-shell
-  brew tap wallix/awless
-  brew install awless
+  brew tap aws/tap
+  brew install aws-sam-cli
+
+  brew inatall amazon-ecs-cli
 
   brew install aws-iam-authenticator
 
   brew install cfn-lint
 
-  brew tap aws/tap
-  brew install aws-sam-cli
+  brew install aws-shell
+
+  brew tap wallix/awless
+  brew install awless
 }
 
 p6df::modules::aws::langs() {
