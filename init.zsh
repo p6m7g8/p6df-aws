@@ -1,16 +1,10 @@
 p6df::modules::aws::version() { echo "0.0.1" }
 p6df::modules::aws::deps() { ModuleDeps=(p6m7g8/p6aws) }
 
-#  source <(awless completion zsh)
-# aws-google-auth
-# aws-keychain
-# aws-okta
-# awslogs
-# kube-aws
-
 p6df::modules::aws::external::brew() {
 
   brew install awscli
+  brew install awsebcli
 
   brew tap aws/tap
   brew install aws-sam-cli
@@ -18,6 +12,7 @@ p6df::modules::aws::external::brew() {
   brew inatall amazon-ecs-cli
 
   brew install aws-iam-authenticator
+  brew install aws-okta
 
   brew install cfn-lint
 
