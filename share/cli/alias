@@ -93,13 +93,6 @@ list-instances =
     p6_aws_ec2_svc_instances_list
   }; f
 
-list-key-pairs =
-  !f() {
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
-    p6_aws_util_cli_qload ec2
-    p6_aws_ec2_svc_key_pairs_list
-  }; f
-
 list-enis =
   !f() {
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
