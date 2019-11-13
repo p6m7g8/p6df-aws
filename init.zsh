@@ -153,7 +153,7 @@ p6_aws_sts_target_source_prompt_info() {
       assumed="ASSUMED:"
   fi
   if [ -n "$AWS_DEFAULT_PROFILE" ]; then
-    echo "aws:\t${assumed}[$AWS_DEFAULT_PROFILE($AWS_ENV/$ENV_LEVEL) - $AWS_DEFAULT_REGION($AWS_VPC)]"
+    echo "aws:\t${assumed}[$AWS_DEFAULT_PROFILE($AWS_ENV/$ENV_LEVEL) - $AWS_DEFAULT_REGION($AWS_VPC_ID)]"
   fi
 }
 
