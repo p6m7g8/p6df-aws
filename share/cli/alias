@@ -2,21 +2,26 @@
 
 whoami =
   !f() {
-   . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
+    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
     p6_aws_util_cli_qload sts
-    p6_aws_sts_caller_identity_get
+    p6_aws_sts_svc_whoami
   }; f
 
 list-org-accounts =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload organizations
     p6_aws_organizations_svc_accounts_list
   }; f
 
 list-amis =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_amis_list
   }; f
@@ -32,112 +37,145 @@ bucket-policy =
 
 list-bucket =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload s3
     p6_aws_s3_svc_bucket_list
   }; f
 
 list-role-policies =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload iam
     p6_aws_iam_svc_role_policies
   }; f
 
 list-roles =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload iam
     p6_aws_iam_svc_roles_list
   }; f
 
 list-users =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload iam
     p6_aws_iam_svc_users_list
   }; f
 
 list-vpcs =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_vpcs_list
   }; f
 
 list-subnets =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_subnets_list
   }; f
 
 list-sgs =
   !f() {
+
    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_sgs_list
   }; f
 
 show-sg =
   !f() {
-     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
-    p6_aws_util_cli_qload ec2
-    p6_aws_ec2_svc_sg_show "$1"
+    local security_group_id="$1"
+
+    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
+    p6_aws_util_cli_qload ec"
+    p6_aws_ec2_svc_sg_show "$security_group_id"
   }; f
 
 list-instances =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_instances_list
   }; f
 
 list-enis =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_eni_list
   }; f
 
 list-ebs =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload ec2
     p6_aws_ec2_svc_volumes_list
   }; f
 
 list-cfts =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload cloudformation
     p6_aws_cloudformation_svc_list
   }; f
 
 list-asgs =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload autoscaling
     p6_aws_autoscaling_svc_asgs_list
   }; f
 
 list-asg-act =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload autoscaling
     p6_aws_autoscaling_svc_asg_act_list "$@"
   }; f
 
 list-elbs =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload elb
     p6_aws_elb_svc_list
   }; f
 
 list-elb-listeners =
   !f() {
+
     . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/util.sh
+
     p6_aws_util_cli_qload elb
     p6_aws_ec2_svc_elb_listeners_list "$@"
   }; f
@@ -146,17 +184,6 @@ list-elb-listeners =
 # alb listeners
 # alb rules
 # target groups
-
-
-
-
-
-
-
-
-
-
-
 
 # XXX: refactor below
 list-caches =
