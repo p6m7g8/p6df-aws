@@ -79,5 +79,5 @@ p6df::prompt::aws::line() {
   p6_aws_cfg_prompt_info "_source"
   p6_aws_cfg_prompt_info "_saved"
 
-  p6_aws_sts_prompt_info "$(p6_aws_cfg_env_shared_credentials_file_active)"
+  p6_aws_sts_prompt_info "$(p6_aws_sts_svc_cred_file)"
 }
