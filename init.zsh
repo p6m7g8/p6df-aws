@@ -22,19 +22,27 @@ p6df::modules::aws::external::brew() {
   brew install awless
 }
 
+p6df::modules::aws::langs::node() {
+
+  for pkg in aws-sdk uuid typescript aws-cdk; do
+    npm uninstall -g $pkg
+  done
+  nodenv rehash
+
+  for pkg in aws-sdk uuid typescript aws-cdk; do
+    npm install -g $pkg
+  done
+  nodenv rehash
+}
+
 p6df::modules::aws::langs() {
 
   # ruby
   gem install cfn-nag
   rbenv rehash
 
-  # node
-  npm install -g aws-sdk
-  npm install -g uuid
-
-  npm install -g typescript
-  npm install -g aws-cdk
-  nodenv rehash
+  # js(node)
+  p6df::modules::aws::langs::node
 
   # python
   pip install taskcat
