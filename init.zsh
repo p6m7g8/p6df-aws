@@ -24,15 +24,13 @@ p6df::modules::aws::external::brew() {
 
 p6df::modules::aws::langs::node() {
 
-  for pkg in aws-sdk uuid typescript aws-cdk; do
-    npm uninstall -g $pkg
-  done
+  npm uninstall -g aws-sdk uuid typescript aws-cdk
   nodenv rehash
 
-  for pkg in aws-sdk uuid typescript aws-cdk; do
-    npm install -g $pkg
-  done
+  npm install -g aws-sdk uuid typescript aws-cdk
   nodenv rehash
+
+  npm list --depth 0 -g
 }
 
 p6df::modules::aws::langs() {
