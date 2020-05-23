@@ -75,11 +75,13 @@ p6df::modules::aws::cdkaliases() {
   alias lb='lr build'
   alias lt='lr test'
 
-  # runs "npm run watch" for the current module (recommended to run in a separate terminal session):
+  # runs "npm run watch" for the current module (recommended to run in a separate terminal session)
   alias lw='lr watch'
 }
 
 p6df::prompt::aws::line() {
+
+  p6_aws_cdk_prompt_info
 
   p6_aws_cfg_prompt_info "_active"
   p6_aws_cfg_prompt_info "_source"
