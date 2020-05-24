@@ -20,6 +20,10 @@ p6df::modules::aws::external::brew() {
 
   brew tap wallix/awless
   brew install awless
+
+  # cdk pack
+  brew install maven
+  brew install dotnet-sdk
 }
 
 p6df::modules::aws::langs::node() {
@@ -44,14 +48,13 @@ p6df::modules::aws::langs() {
 
   # python
   pip install taskcat
+  pip insatall boto3
   pyenv rehash
 
   # go
   go get github.com/aws/aws-sdk-go
-
+  
   # cdk pack
-  brew install maven
-  brew install dotnet-sdk
   pip install twine
   pyenv rehash
 }
