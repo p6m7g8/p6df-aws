@@ -84,6 +84,11 @@ p6df::modules::aws::cdkaliases() {
 
 p6df::prompt::aws::line() {
 
+  p6_aws_prompt_info
+}
+
+p6_aws_prompt_info() {
+
   p6_aws_cdk_prompt_info
 
   p6_aws_cfg_prompt_info "_active"
