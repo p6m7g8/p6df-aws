@@ -3,7 +3,7 @@ p6df::modules::aws::deps() { ModuleDeps=(p6m7g8/p6aws) }
 
 p6df::modules::aws::external::brew() {
 
-  brew install awscli
+#  brew install awscli
   brew install awsebcli
 
   brew tap aws/tap
