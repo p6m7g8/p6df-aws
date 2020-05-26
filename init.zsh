@@ -23,15 +23,15 @@ p6df::modules::aws::external::brew() {
 
   # cdk pack
   brew install maven
-  brew install dotnet-sdk
+  brew cask install dotnet-sdk
 }
 
 p6df::modules::aws::langs::node() {
 
-  npm uninstall -g aws-sdk uuid typescript aws-cdk
+  npm uninstall -g aws-sdk uuid typescript aws-cdk yarn lerna
   nodenv rehash
 
-  npm install -g aws-sdk uuid typescript aws-cdk
+  npm install -g aws-sdk uuid typescript aws-cdk yarn lerna
   nodenv rehash
 
   npm list --depth 0 -g
