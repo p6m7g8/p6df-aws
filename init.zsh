@@ -3,7 +3,7 @@ p6df::modules::aws::deps() { ModuleDeps=(p6m7g8/p6aws) }
 
 p6df::modules::aws::external::brew() {
 
-#  brew install awscli
+  brew install awscli
   brew install awsebcli
 
   brew tap aws/tap
@@ -28,10 +28,10 @@ p6df::modules::aws::external::brew() {
 
 p6df::modules::aws::langs::node() {
 
-  npm uninstall -g aws-sdk uuid typescript aws-cdk yarn lerna
+  npm uninstall -g aws-sdk uuid tslint eslint typescript aws-cdk yarn lerna
   nodenv rehash
 
-  npm install -g aws-sdk uuid typescript aws-cdk yarn lerna
+  npm install   -g aws-sdk uuid tslint eslint typescript aws-cdk yarn lerna
   nodenv rehash
 
   npm list --depth 0 -g
