@@ -1,5 +1,10 @@
 p6df::modules::aws::version() { echo "0.0.1" }
-p6df::modules::aws::deps() { ModuleDeps=(p6m7g8/p6aws) }
+p6df::modules::aws::deps() {
+    ModuleDeps=(
+	p6m7g8/p6aws
+	aws/aws-codebuild-docker-images
+    )
+}
 
 p6df::modules::aws::external::brew() {
 
@@ -50,7 +55,7 @@ p6df::modules::aws::langs() {
 
   # python
   pip install taskcat
-  pip insatall boto3
+  pip install boto3
   pyenv rehash
 
   # go
@@ -59,6 +64,9 @@ p6df::modules::aws::langs() {
   # cdk pack
   pip install twine
   pyenv rehash
+
+  # codebuild local
+  docker pull amazon/aws-codebuild-local:latest --disable-content-trust=false
 }
 
 p6df::modules::aws::home::symlink() {
@@ -69,6 +77,7 @@ p6df::modules::aws::home::symlink() {
 p6df::modules::aws::init() {
 
   p6df::modules::aws::cdkaliases
+  p6df::util::path_if "$P6_DFZ_SRC_DIR/aws/aws-codebuild-docker-images/local_builds"
 }
 
 p6df::modules::aws::cdkaliases() {
