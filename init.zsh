@@ -23,6 +23,8 @@ p6df::modules::aws::external::brew() {
 
   brew install aws-shell
 
+  brew install awslogs
+
   brew tap wallix/awless
   brew install awless
 
@@ -33,10 +35,10 @@ p6df::modules::aws::external::brew() {
 
 p6df::modules::aws::langs::node() {
 
-  npm uninstall -g aws-sdk uuid tslint eslint typescript aws-cdk yarn lerna
+  npm uninstall -g aws-sdk uuid aws-cdk
   nodenv rehash
 
-  npm install   -g aws-sdk uuid tslint eslint typescript aws-cdk yarn lerna
+  npm install   -g aws-sdk uuid aws-cdk
   nodenv rehash
 
   npm list --depth 0 -g
