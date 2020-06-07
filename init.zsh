@@ -1,4 +1,18 @@
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::version()
+#
+#>
+######################################################################
 p6df::modules::aws::version() { echo "0.0.1" }
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::deps()
+#
+#>
+######################################################################
 p6df::modules::aws::deps() {
     ModuleDeps=(
 	p6m7g8/p6aws
@@ -6,6 +20,13 @@ p6df::modules::aws::deps() {
     )
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::external::brew()
+#
+#>
+######################################################################
 p6df::modules::aws::external::brew() {
 
   brew install awscli
@@ -33,6 +54,13 @@ p6df::modules::aws::external::brew() {
   brew cask install dotnet-sdk
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::langs::node()
+#
+#>
+######################################################################
 p6df::modules::aws::langs::node() {
 
   npm uninstall -g aws-sdk uuid aws-cdk
@@ -44,6 +72,13 @@ p6df::modules::aws::langs::node() {
   npm list --depth 0 -g
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::langs()
+#
+#>
+######################################################################
 p6df::modules::aws::langs() {
 
   # ruby
@@ -69,17 +104,38 @@ p6df::modules::aws::langs() {
   docker pull amazon/aws-codebuild-local:latest --disable-content-trust=false
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::home::symlink()
+#
+#>
+######################################################################
 p6df::modules::aws::home::symlink() {
 
   ln -fs $P6_DFZ_SRC_DIR/$USER/home-private/aws .aws
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::init()
+#
+#>
+######################################################################
 p6df::modules::aws::init() {
 
   p6df::modules::aws::cdkaliases
   p6df::util::path_if "$P6_DFZ_SRC_DIR/aws/aws-codebuild-docker-images/local_builds"
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::cdkaliases()
+#
+#>
+######################################################################
 p6df::modules::aws::cdkaliases() {
 
   # runs an npm script via lerna for a the current module
@@ -93,11 +149,28 @@ p6df::modules::aws::cdkaliases() {
   alias lw='lr watch'
 }
 
+######################################################################
+#<
+#
+# Function: p6df::prompt::aws::line()
+#
+#>
+######################################################################
 p6df::prompt::aws::line() {
 
   p6_aws_prompt_info
 }
 
+######################################################################
+#<
+#
+# Function: str str = p6_aws_prompt_info()
+#
+#  Returns:
+#	str - str
+#
+#>
+######################################################################
 p6_aws_prompt_info() {
 
     local cdk=$(p6_aws_cdk_prompt_info)
