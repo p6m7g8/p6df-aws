@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/p6m7g8/p6df-aws/compare/v1.0.0...v1.0.1) (2020-09-20)
+
+
+### Features
+
+* **prompt:** adds eks prompt ([#13](https://github.com/p6m7g8/p6df-aws/issues/13)) ([53b8ba9](https://github.com/p6m7g8/p6df-aws/commit/53b8ba9e6806cb3e8a0ed7a4c107c71a5bdcb1b0))
+
+
+### Bug Fixes
+
+* **version:** match tag ([#12](https://github.com/p6m7g8/p6df-aws/issues/12)) ([84456cd](https://github.com/p6m7g8/p6df-aws/commit/84456cd774fc1ab01f115a3298a54bc329748537))
+
 ## 1.0.0 (2020-06-07)
 
 
