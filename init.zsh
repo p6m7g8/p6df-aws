@@ -179,11 +179,12 @@ p6_aws_prompt_info() {
     local source=$(p6_aws_cfg_prompt_info "_source")
     local saved=$(p6_aws_cfg_prompt_info "_saved")
 
+    local eks=$(p6_aws_eks_prompt_info)
     local sts=$(p6_aws_sts_prompt_info "$(p6_aws_sts_svc_cred_file)")
 
     local str
     local item
-    for item in "$cdk" "$active" "$source" "$saved" "$sts"; do
+    for item in "$eks" "$cdk" "$active" "$source" "$saved" "$sts"; do
 	if ! p6_string_blank "$item"; then
 	    str=$(p6_string_append "$str" "$item" "
 ")
