@@ -40,21 +40,22 @@ p6df::modules::aws::external::brew() {
   brew tap weaveworks/tap
   brew install weaveworks/tap/eksctl
 
+  brew install aws/tap/copilot-cli
+
+  brew install fargatecli
+
   brew install aws-iam-authenticator
   brew install aws-okta
 
   brew install cfn-lint
 
-  brew install aws-shell
-
   brew install awslogs
+
+  brew install aws-shell
 
   brew tap wallix/awless
   brew install awless
 
-  # cdk pack
-  brew install maven
-  brew cask install dotnet-sdk
 }
 
 ######################################################################
@@ -66,10 +67,10 @@ p6df::modules::aws::external::brew() {
 ######################################################################
 p6df::modules::aws::langs::node() {
 
-  npm uninstall -g aws-sdk uuid aws-cdk
+  npm uninstall -g aws-sdk uuid aws-cdk @aws-amplify/cli
   nodenv rehash
 
-  npm install   -g aws-sdk uuid aws-cdk
+  npm install   -g aws-sdk uuid aws-cdk @aws-amplify/cli
   nodenv rehash
 
   npm list --depth 0 -g
