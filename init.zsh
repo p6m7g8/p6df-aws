@@ -37,6 +37,9 @@ p6df::modules::aws::external::brew() {
 
   brew inatall amazon-ecs-cli
 
+  brew tap weaveworks/tap
+  brew install weaveworks/tap/eksctl
+
   brew install aws-iam-authenticator
   brew install aws-okta
 
