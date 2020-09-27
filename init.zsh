@@ -105,6 +105,8 @@ p6df::modules::aws::langs() {
 
   # codebuild local
   docker pull amazon/aws-codebuild-local:latest --disable-content-trust=false
+
+  curl -o $P6_DFZ_SRC_P6M7G8_DIR/p6df-aws/libexec/aws-eks-kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/darwin/amd64/kubectl
 }
 
 ######################################################################
@@ -130,6 +132,7 @@ p6df::modules::aws::init() {
 
   p6df::modules::aws::cdkaliases
   p6df::util::path_if "$P6_DFZ_SRC_DIR/aws/aws-codebuild-docker-images/local_builds"
+  p6df::util::path_if "$P6_DFZ_SRC_P6M7G8_DIR/p6df-aws/libexec"
 }
 
 ######################################################################
