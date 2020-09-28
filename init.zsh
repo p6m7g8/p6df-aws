@@ -55,7 +55,6 @@ p6df::modules::aws::external::brew() {
 
   brew tap wallix/awless
   brew install awless
-
 }
 
 ######################################################################
@@ -67,13 +66,31 @@ p6df::modules::aws::external::brew() {
 ######################################################################
 p6df::modules::aws::langs::node() {
 
-  npm uninstall -g aws-sdk uuid aws-cdk @aws-amplify/cli
-  nodenv rehash
-
-  npm install   -g aws-sdk uuid aws-cdk @aws-amplify/cli
+  npm install -g aws-sdk aws-cdk @aws-amplify/cli
   nodenv rehash
 
   npm list --depth 0 -g
+}
+
+p6df::modules::aws::langs::ruby() {
+
+  gem install aws-sdk
+  gem install cfn-nag
+  rbenv rehash
+}
+
+p6df::modules::aws::langs::python() {
+
+  # python
+  pip install boto3
+  pip install taskcat
+  pip install ec2instanceconnectcli
+  pyenv rehash
+}
+
+p6df::modules::aws::lanags::go() {
+
+  go get github.com/aws/aws-sdk-go
 }
 
 ######################################################################
@@ -86,27 +103,21 @@ p6df::modules::aws::langs::node() {
 p6df::modules::aws::langs() {
 
   # ruby
-  gem install cfn-nag
-  rbenv rehash
+  p6df::modules::aws::langs::ruby
 
   # js(node)
   p6df::modules::aws::langs::node
 
   # python
-  pip install taskcat
-  pip install boto3
-  pyenv rehash
+  p6df::modules::aws::langs::python
 
   # go
-  go get github.com/aws/aws-sdk-go
-
-  # cdk pack
-  pip install twine
-  pyenv rehash
+  p6df::modules::aws::langs::go
 
   # codebuild local
   docker pull amazon/aws-codebuild-local:latest --disable-content-trust=false
 
+  # eks kubectl client
   curl -o $P6_DFZ_SRC_P6M7G8_DIR/p6df-aws/libexec/aws-eks-kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/darwin/amd64/kubectl
 }
 
@@ -131,29 +142,8 @@ p6df::modules::aws::home::symlink() {
 ######################################################################
 p6df::modules::aws::init() {
 
-  p6df::modules::aws::cdkaliases
   p6df::util::path_if "$P6_DFZ_SRC_DIR/aws/aws-codebuild-docker-images/local_builds"
   p6df::util::path_if "$P6_DFZ_SRC_P6M7G8_DIR/p6df-aws/libexec"
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::aws::cdkaliases()
-#
-#>
-######################################################################
-p6df::modules::aws::cdkaliases() {
-
-  # runs an npm script via lerna for a the current module
-  alias lr='lerna run --stream --scope $(node -p "require(\"./package.json\").name")'
-
-  # runs "npm run build" (build + test) for the current module
-  alias lb='lr build'
-  alias lt='lr test'
-
-  # runs "npm run watch" for the current module (recommended to run in a separate terminal session)
-  alias lw='lr watch'
 }
 
 ######################################################################
@@ -180,25 +170,22 @@ p6df::prompt::aws::line() {
 ######################################################################
 p6_aws_prompt_info() {
 
-    local cdk=$(p6_aws_cdk_prompt_info)
-
     local active=$(p6_aws_cfg_prompt_info "_active")
     local source=$(p6_aws_cfg_prompt_info "_source")
     local saved=$(p6_aws_cfg_prompt_info "_saved")
 
-    local eks=$(p6_aws_eks_prompt_info)
     local sts=$(p6_aws_sts_prompt_info "$(p6_aws_sts_svc_cred_file)")
 
     local str
     local item
-    for item in "$eks" "$cdk" "$active" "$source" "$saved" "$sts"; do
+    for item in "$active" "$source" "$saved" "$sts"; do
 	if ! p6_string_blank "$item"; then
 	    str=$(p6_string_append "$str" "$item" "
 ")
 	fi
     done
 
-    str=$(echo $str | perl -p -e 's,^\s*,,')
+    str=$(p6_echo $str | perl -p -e 's,^\s*,,')
 
     p6_return_str "$str"
 }
