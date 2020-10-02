@@ -66,7 +66,7 @@ p6df::modules::aws::external::brew() {
 ######################################################################
 p6df::modules::aws::langs::node() {
 
-  npm install -g aws-sdk aws-cdk @aws-amplify/cli
+  npm install -g aws-sdk @aws-amplify/cli
   nodenv rehash
 
   npm list --depth 0 -g
