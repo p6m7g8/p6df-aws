@@ -9,6 +9,5 @@
 - p6df::modules::aws::langs::python()
 - p6df::modules::aws::langs::ruby()
 - p6df::modules::aws::prompt::line()
-- p6df::modules::aws::version()
 - str str = p6_aws_prompt_info()
 
