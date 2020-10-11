@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/p6m7g8/p6df-aws/compare/v1.0.1...v2.0.0) (2020-10-11)
+
+
+### Features
+
+* **api:** fixes depends, `aws-okta is EOL` ([#19](https://github.com/p6m7g8/p6df-aws/issues/19)) ([4f7c575](https://github.com/p6m7g8/p6df-aws/commit/4f7c5753e08d560e28efa40ea2550e577c91fdfd))
+* **bew:** add copilot, fargate, amplify clis ([#16](https://github.com/p6m7g8/p6df-aws/issues/16)) ([d5ec79c](https://github.com/p6m7g8/p6df-aws/commit/d5ec79c383e72d882896979400ccca1d7a0f701e))
+* **brew:** adds eksctl ([#14](https://github.com/p6m7g8/p6df-aws/issues/14)) ([351291e](https://github.com/p6m7g8/p6df-aws/commit/351291eac8fb6891adc0536f026da947e8951886))
+* **langs:** setup the aws eks kubectl cli per doc ([#15](https://github.com/p6m7g8/p6df-aws/issues/15)) ([cb78f3e](https://github.com/p6m7g8/p6df-aws/commit/cb78f3ec75da35986d3710b93154636f99bc596a))
+
+
+### Bug Fixes
+
+* **langs:** move aws-cdk node module to p6df-awscdk ([#18](https://github.com/p6m7g8/p6df-aws/issues/18)) ([ec2226c](https://github.com/p6m7g8/p6df-aws/commit/ec2226c55e4caa483ca947cacfbcc21c6ba7996b))
+
+
+* **api:** move cdk to cdk, eks to eks, functionalize, +ec2instanceconnectcli ([#17](https://github.com/p6m7g8/p6df-aws/issues/17)) ([2207420](https://github.com/p6m7g8/p6df-aws/commit/2207420b0e366246b5af6595b259ce13f9ff45a4))
+
 ### [1.0.1](https://github.com/p6m7g8/p6df-aws/compare/v1.0.0...v1.0.1) (2020-09-20)
 
 
