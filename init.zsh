@@ -6,6 +6,7 @@
 #>
 ######################################################################
 p6df::modules::aws::version() { echo "0.0.1" }
+
 ######################################################################
 #<
 #
@@ -15,8 +16,10 @@ p6df::modules::aws::version() { echo "0.0.1" }
 ######################################################################
 p6df::modules::aws::deps() {
     ModuleDeps=(
-	p6m7g8/p6aws
-	aws/aws-codebuild-docker-images
+      p6m7g8/p6df-docker
+      p6m7g8/p6df-java p6m7g8/p6df-node p6m7g8/p6df-python p6m7g8/p6df-go p6m7g8/p6df-ruby
+      p6m7g8/p6aws
+      aws/aws-codebuild-docker-images
     )
 }
 
@@ -36,16 +39,13 @@ p6df::modules::aws::external::brew() {
   brew install aws-sam-cli
 
   brew inatall amazon-ecs-cli
-
   brew tap weaveworks/tap
   brew install weaveworks/tap/eksctl
+  brew install fargatecli
 
   brew install aws/tap/copilot-cli
 
-  brew install fargatecli
-
   brew install aws-iam-authenticator
-  brew install aws-okta
 
   brew install cfn-lint
 
@@ -72,6 +72,13 @@ p6df::modules::aws::langs::node() {
   npm list --depth 0 -g
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::langs::ruby()
+#
+#>
+######################################################################
 p6df::modules::aws::langs::ruby() {
 
   gem install aws-sdk
@@ -79,6 +86,13 @@ p6df::modules::aws::langs::ruby() {
   rbenv rehash
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::langs::python()
+#
+#>
+######################################################################
 p6df::modules::aws::langs::python() {
 
   # python
@@ -88,6 +102,13 @@ p6df::modules::aws::langs::python() {
   pyenv rehash
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::aws::lanags::go()
+#
+#>
+######################################################################
 p6df::modules::aws::lanags::go() {
 
   go get github.com/aws/aws-sdk-go
@@ -102,17 +123,10 @@ p6df::modules::aws::lanags::go() {
 ######################################################################
 p6df::modules::aws::langs() {
 
-  # ruby
-  p6df::modules::aws::langs::ruby
-
-  # js(node)
   p6df::modules::aws::langs::node
-
-  # python
   p6df::modules::aws::langs::python
-
-  # go
   p6df::modules::aws::langs::go
+  p6df::modules::aws::langs::ruby
 
   # codebuild local
   docker pull amazon/aws-codebuild-local:latest --disable-content-trust=false
@@ -149,11 +163,11 @@ p6df::modules::aws::init() {
 ######################################################################
 #<
 #
-# Function: p6df::prompt::aws::line()
+# Function: p6df::modules::aws::prompt::line()
 #
 #>
 ######################################################################
-p6df::prompt::aws::line() {
+p6df::modules::aws::prompt::line() {
 
   p6_aws_prompt_info
 }
