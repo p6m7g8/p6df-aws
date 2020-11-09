@@ -12,6 +12,7 @@ p6df::modules::aws::deps() {
       p6m7g8/p6df-java p6m7g8/p6df-node p6m7g8/p6df-python p6m7g8/p6df-go p6m7g8/p6df-ruby
       p6m7g8/p6aws
       aws/aws-codebuild-docker-images
+      aws/constructs
     )
 }
 
@@ -73,8 +74,8 @@ p6df::modules::aws::langs::node() {
 ######################################################################
 p6df::modules::aws::langs::ruby() {
 
-  gem install aws-sdk
-  gem install cfn-nag
+  gem install --no-document aws-sdk
+  gem install --no-document cfn-nag
   rbenv rehash
 }
 
@@ -101,7 +102,7 @@ p6df::modules::aws::langs::python() {
 #
 #>
 ######################################################################
-p6df::modules::aws::lanags::go() {
+p6df::modules::aws::langs::go() {
 
   go get github.com/aws/aws-sdk-go
 }
