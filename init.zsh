@@ -30,7 +30,7 @@ p6df::modules::aws::external::brew() {
   brew tap aws/tap
   brew install aws-sam-cli
 
-  brew inatall amazon-ecs-cli
+  brew install amazon-ecs-cli
   brew tap weaveworks/tap
   brew install weaveworks/tap/eksctl
   brew install fargatecli
@@ -58,7 +58,8 @@ p6df::modules::aws::external::brew() {
 ######################################################################
 p6df::modules::aws::langs::node() {
 
-  npm install -g aws-sdk @aws-amplify/cli
+  npm install -g aws-sdk 
+  npm install -g @aws-amplify/cli --verbose
   nodenv rehash
 
   npm list --depth 0 -g
@@ -73,7 +74,7 @@ p6df::modules::aws::langs::node() {
 ######################################################################
 p6df::modules::aws::langs::ruby() {
 
-  gem install aws-sdk
+  gem install -v aws-sdk
   gem install cfn-nag
   rbenv rehash
 }
@@ -101,7 +102,7 @@ p6df::modules::aws::langs::python() {
 #
 #>
 ######################################################################
-p6df::modules::aws::lanags::go() {
+p6df::modules::aws::langs::go() {
 
   go get github.com/aws/aws-sdk-go
 }
