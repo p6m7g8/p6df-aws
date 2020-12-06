@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/p6m7g8/p6df-aws/compare/v2.0.0...v2.1.0) (2020-12-06)
+
+
+### Features
+
+* **api:** centralize ::version() ([c655ae2](https://github.com/p6m7g8/p6df-aws/commit/c655ae298141df26188f7511db7cd78bc553a6e7))
+* **github:** adds ISSUE_TEMPLATEs ([#25](https://github.com/p6m7g8/p6df-aws/issues/25)) ([be80c45](https://github.com/p6m7g8/p6df-aws/commit/be80c45c71bb270dddb1b84a417d826c0eee148d))
+* **mergify:** re-gens ([71917ca](https://github.com/p6m7g8/p6df-aws/commit/71917ca057c9eeeb92d224ddc918278df42fdde2))
+
+
+### Bug Fixes
+
+* **langs:** fixes typos, turns on verbosity ([#29](https://github.com/p6m7g8/p6df-aws/issues/29)) ([0f07500](https://github.com/p6m7g8/p6df-aws/commit/0f0750008feb8383f4398fe9cc14e3d951bcb11a))
+
+
+* **README:** fixes module expansion, adds CodeCov and Synk badges ([#28](https://github.com/p6m7g8/p6df-aws/issues/28)) ([5e8fe77](https://github.com/p6m7g8/p6df-aws/commit/5e8fe775b7c5fded764ebcfbcde84d32153b8929))
+* **README:** updates to template v2.0 ([#26](https://github.com/p6m7g8/p6df-aws/issues/26)) ([3699ca1](https://github.com/p6m7g8/p6df-aws/commit/3699ca1004517a5cdfe67a1aea1267321d3064e1))
+* **semantic:** no longer needed, defaults are fine ([#24](https://github.com/p6m7g8/p6df-aws/issues/24)) ([1460eeb](https://github.com/p6m7g8/p6df-aws/commit/1460eeb3b13e9a9bbee9a2460bde30722424d29a))
+
 ## [2.0.0](https://github.com/p6m7g8/p6df-aws/compare/v1.0.1...v2.0.0) (2020-10-11)
 
 
