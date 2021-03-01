@@ -47,6 +47,8 @@ p6df::modules::aws::external::brew() {
 
   brew tap wallix/awless
   brew install awless
+
+  brew install aws-vault
 }
 
 ######################################################################
@@ -137,7 +139,18 @@ p6df::modules::aws::langs() {
 ######################################################################
 p6df::modules::aws::home::symlink() {
 
-  ln -fs $P6_DFZ_SRC_DIR/$USER/home-private/aws .aws
+  rm -rf .aws
+  mkdir .aws
+
+  (
+    cd .aws
+    for file in $P6_DFZ_SRC_DIR/$USER/home-private/aws/*; do
+      ln -fs $file .
+    done
+
+    ln -fs $P6_DFZ_SRC_DIR/p6m7g8/p6df-aws/share/cli
+  )
+
 }
 
 ######################################################################
