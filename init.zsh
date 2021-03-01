@@ -1,4 +1,3 @@
-
 ######################################################################
 #<
 #
@@ -7,12 +6,12 @@
 #>
 ######################################################################
 p6df::modules::aws::deps() {
-    ModuleDeps=(
-      p6m7g8/p6df-docker
-      p6m7g8/p6df-java p6m7g8/p6df-node p6m7g8/p6df-python p6m7g8/p6df-go p6m7g8/p6df-ruby
-      p6m7g8/p6aws
-      aws/aws-codebuild-docker-images
-    )
+  ModuleDeps=(
+    p6m7g8/p6df-docker
+    p6m7g8/p6df-java p6m7g8/p6df-node p6m7g8/p6df-python p6m7g8/p6df-go p6m7g8/p6df-ruby
+    p6m7g8/p6aws
+    aws/aws-codebuild-docker-images
+  )
 }
 
 ######################################################################
@@ -60,7 +59,7 @@ p6df::modules::aws::external::brew() {
 ######################################################################
 p6df::modules::aws::langs::node() {
 
-  npm install -g aws-sdk 
+  npm install -g aws-sdk
   npm install -g @aws-amplify/cli --verbose
   nodenv rehash
 
@@ -190,22 +189,22 @@ p6df::modules::aws::prompt::line() {
 ######################################################################
 p6_aws_prompt_info() {
 
-    local active=$(p6_aws_cfg_prompt_info "_active")
-    local source=$(p6_aws_cfg_prompt_info "_source")
-    local saved=$(p6_aws_cfg_prompt_info "_saved")
+  local active=$(p6_aws_cfg_prompt_info "_active")
+  local source=$(p6_aws_cfg_prompt_info "_source")
+  local saved=$(p6_aws_cfg_prompt_info "_saved")
 
-    local sts=$(p6_aws_sts_prompt_info "$(p6_aws_sts_svc_cred_file)")
+  local sts=$(p6_aws_sts_prompt_info "$(p6_aws_sts_svc_cred_file)")
 
-    local str
-    local item
-    for item in "$active" "$source" "$saved" "$sts"; do
-	if ! p6_string_blank "$item"; then
-	    str=$(p6_string_append "$str" "$item" "
+  local str
+  local item
+  for item in "$active" "$source" "$saved" "$sts"; do
+    if ! p6_string_blank "$item"; then
+      str=$(p6_string_append "$str" "$item" "
 ")
-	fi
-    done
+    fi
+  done
 
-    str=$(p6_echo $str | perl -p -e 's,^\s*,,')
+  str=$(p6_echo $str | perl -p -e 's,^\s*,,')
 
-    p6_return_str "$str"
+  p6_return_str "$str"
 }
