@@ -38,9 +38,11 @@
 
 - [Change Log](CHANGELOG.md)
 
-### Usage
+## Usage
 
-#### init.zsh:
+### p6df-aws:
+
+#### p6df-aws/init.zsh:
 
 - p6df::modules::aws::deps()
 - p6df::modules::aws::external::brew()
