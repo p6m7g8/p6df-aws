@@ -38,9 +38,11 @@
 
 - [Change Log](CHANGELOG.md)
 
-### Usage
+## Usage
 
-#### init.zsh:
+### p6df-aws:
+
+#### p6df-aws/init.zsh:
 
 - p6df::modules::aws::deps()
 - p6df::modules::aws::external::brew()
@@ -53,6 +55,7 @@
 - p6df::modules::aws::langs::ruby()
 - p6df::modules::aws::prompt::line()
 - str str = p6_aws_prompt_info()
+
 
 
 ## Author
