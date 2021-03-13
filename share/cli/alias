@@ -3,183 +3,183 @@
 whoami =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
-    
-    p6_aws_sts_svc_whoami
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
+
+    p6_aws_svc_sts_whoami
   }; f
 
 list-org-accounts =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_organizations_svc_accounts_list
+    p6_aws_svc_organizations_accounts_list
   }; f
 
 list-amis =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_ec2_svc_amis_list
+    p6_aws_svc_ec2_amis_list
   }; f
 
 bucket-policy =
   !f() {
     local bucket="$1"
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_s3_svc_bucket_policy "$bucket" | python -mjson.tool
+    p6_aws_svc_s3_bucket_policy "$bucket" | python -mjson.tool
   }; f
 
 list-bucket =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_s3_svc_bucket_list
+    p6_aws_svc_s3_bucket_list
   }; f
 
 list-role-policies =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_iam_svc_role_policies
+    p6_aws_svc_iam_role_policies
   }; f
 
 list-roles =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_iam_svc_roles_list
+    p6_aws_svc_iam_roles_list
   }; f
 
 list-users =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_iam_svc_users_list
+    p6_aws_svc_iam_users_list
   }; f
 
 list-vpcs =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_ec2_svc_vpcs_list
+    p6_aws_svc_ec2_vpcs_list
   }; f
 
 list-subnets =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_ec2_svc_subnets_list
+    p6_aws_svc_ec2_subnets_list
   }; f
 
 list-sgs =
   !f() {
 
-   . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_ec2_svc_sgs_list
+    p6_aws_svc_ec2_sgs_list
   }; f
 
 show-sg =
   !f() {
     local security_group_id="$1"
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_ec2_svc_sg_show "$security_group_id"
+    p6_aws_svc_ec2_sg_show "$security_group_id"
   }; f
 
 list-instances =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_ec2_svc_instances_list
+    p6_aws_svc_ec2_instances_list
   }; f
 
 list-enis =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_ec2_svc_eni_list
+    p6_aws_svc_ec2_eni_list
   }; f
 
 list-ebs =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_ec2_svc_volumes_list
+    p6_aws_svc_ec2_volumes_list
   }; f
 
 list-cfts =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_cloudformation_svc_list
+    p6_aws_svc_cloudformation_list
   }; f
 
 list-asgs =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_autoscaling_svc_asgs_list
+    p6_aws_svc_autoscaling_asgs_list
   }; f
 
 list-asg-act =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    ep6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_autoscaling_svc_asg_act_list "$@"
+    p6_aws_svc_autoscaling_asg_act_list "$@"
   }; f
 
 list-elbs =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_elb_svc_list
+    p6_aws_svc_elb_list
   }; f
 
 list-elb-listeners =
   !f() {
 
-    . $P6_DFZ_SRC_DIR/p6m7g8/p6aws/lib/cli.sh
-    p6_aws_cli_qload
+    . $P6_DFZ_SRC_P6M7G8_DIR/p6aws/lib/cli/cli.sh
+    p6_aws_cli_qload $P6_DFZ_SRC_P6M7G8_DIR
 
-    p6_aws_ec2_svc_elb_listeners_list "$@"
+    p6_aws_svc_ec2_elb_listeners_list "$@"
   }; f
 
 # albs
