@@ -193,7 +193,7 @@ p6_aws_prompt_info() {
   local source=$(p6_aws_cfg_prompt_info "_source")
   local saved=$(p6_aws_cfg_prompt_info "_saved")
 
-  local sts=$(p6_aws_sts_prompt_info "$(p6_aws_util_env_shared_credentials_file)")
+  local sts=$(p6_aws_sts_prompt_info "$(p6_aws_env_shared_credentials_file_active)")
 
   local str
   local item
