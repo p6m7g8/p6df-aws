@@ -8,7 +8,7 @@
 p6df::modules::aws::deps() {
   ModuleDeps=(
     p6m7g8/p6df-docker
-    p6m7g8/p6df-java p6m7g8/p6df-node p6m7g8/p6df-python p6m7g8/p6df-go p6m7g8/p6df-ruby
+    p6m7g8/p6df-java p6m7g8/p6df-node p6m7g8/p6df-python p6m7g8/p6df-go p6m7g8/p6df-ruby p6m7g8/p6df-rust
     p6m7g8/p6aws
     aws/aws-codebuild-docker-images
   )
@@ -76,7 +76,6 @@ p6df::modules::aws::langs::node() {
 p6df::modules::aws::langs::ruby() {
 
   gem install -v aws-sdk
-  gem install cfn-nag
   rbenv rehash
 }
 
@@ -108,6 +107,16 @@ p6df::modules::aws::langs::go() {
   go get github.com/aws/aws-sdk-go
 }
 
+p6df::modules::aws::langs::rust() {
+
+  cargo install cfn-guard
+  cargo install cfn-guard-lambda
+  cargo install cfn-guard-rulegen
+  cargo install cfn-guard-rulegen-lambda
+  # cargo install cfn-custom-resource
+  # cargo install cfn-resource-provider
+}
+
 ######################################################################
 #<
 #
@@ -121,6 +130,7 @@ p6df::modules::aws::langs() {
   p6df::modules::aws::langs::python
   p6df::modules::aws::langs::go
   p6df::modules::aws::langs::ruby
+  p6df::modules::aws::langs::rust
 
   # codebuild local
   docker pull amazon/aws-codebuild-local:latest --disable-content-trust=false
