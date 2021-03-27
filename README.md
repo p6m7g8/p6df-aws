@@ -53,6 +53,7 @@
 - p6df::modules::aws::langs::node()
 - p6df::modules::aws::langs::python()
 - p6df::modules::aws::langs::ruby()
+- p6df::modules::aws::langs::rust()
 - p6df::modules::aws::prompt::line()
 - str str = p6_aws_prompt_info()
 
