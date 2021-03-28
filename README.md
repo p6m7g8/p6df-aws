@@ -55,6 +55,7 @@
 - p6df::modules::aws::langs::ruby()
 - p6df::modules::aws::langs::rust()
 - p6df::modules::aws::prompt::line()
+- p6df::modules::aws::vscodes()
 - str str = p6_aws_prompt_info()
 
 
