@@ -17,6 +17,22 @@ p6df::modules::aws::deps() {
 ######################################################################
 #<
 #
+# Function: p6df::modules::aws::vscodes()
+#
+#>
+######################################################################
+p6df::modules::aws::vscodes() {
+
+  code --install-extension amazonwebservices.aws-toolkit-vscode
+  code --install-extension aws-amplify.aws-amplify-vscode
+  code --install-extension iann0036.live-share-for-aws-cloud9
+  code --install-extension vscode-aws-console.vscode-aws-console
+  code --install-extension loganarnett.lambda-snippets
+}
+
+######################################################################
+#<
+#
 # Function: p6df::modules::aws::external::brew()
 #
 #>
@@ -129,6 +145,7 @@ p6df::modules::aws::langs::rust() {
 #
 # Function: p6df::modules::aws::langs()
 #
+#  Environment:	 P6_DFZ_SRC_P6M7G8_DIR
 #>
 ######################################################################
 p6df::modules::aws::langs() {
@@ -151,6 +168,7 @@ p6df::modules::aws::langs() {
 #
 # Function: p6df::modules::aws::home::symlink()
 #
+#  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
 p6df::modules::aws::home::symlink() {
@@ -162,11 +180,11 @@ p6df::modules::aws::home::symlink() {
     cd .aws
     for file in $P6_DFZ_SRC_DIR/$USER/home-private/aws/*; do
       echo ln -fs $file .
-#      ln -fs $file .
+      #      ln -fs $file .
     done
 
     echo ln -fs $P6_DFZ_SRC_DIR/p6m7g8/p6df-aws/share/cli
-#    ln -fs $P6_DFZ_SRC_DIR/p6m7g8/p6df-aws/share/cli
+    #    ln -fs $P6_DFZ_SRC_DIR/p6m7g8/p6df-aws/share/cli
   )
 }
 
@@ -175,6 +193,7 @@ p6df::modules::aws::home::symlink() {
 #
 # Function: p6df::modules::aws::init()
 #
+#  Environment:	 P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DIR
 #>
 ######################################################################
 p6df::modules::aws::init() {
@@ -203,6 +222,7 @@ p6df::modules::aws::prompt::line() {
 #  Returns:
 #	str - str
 #
+#  Depends:	 p6_string
 #>
 ######################################################################
 p6_aws_prompt_info() {
