@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/p6m7g8/p6df-aws/compare/v2.1.0...v2.1.1) (2021-04-04)
+
+
+### Features
+
+* **deps:** adds aws-vault ([272d630](https://github.com/p6m7g8/p6df-aws/commit/272d63033c824792f08c90e2be720712056cfbd1))
+
+
+### Bug Fixes
+
+* **api:** typo ([#30](https://github.com/p6m7g8/p6df-aws/issues/30)) ([1ad2f36](https://github.com/p6m7g8/p6df-aws/commit/1ad2f36b7c44c52dd53962cf552ef0d749eb31ba))
+* **prompt:** use the right function ([#33](https://github.com/p6m7g8/p6df-aws/issues/33)) ([166a18c](https://github.com/p6m7g8/p6df-aws/commit/166a18cd0ecd95d5e15f7aac8c1e0ca2edebdf76))
+
+
+* **deps:** catch up with p6aws updates ([#32](https://github.com/p6m7g8/p6df-aws/issues/32)) ([8e4dbe9](https://github.com/p6m7g8/p6df-aws/commit/8e4dbe9f07f08f173c9f27aaac3cf3b95fb6f581))
+* **link:** remove rendundant symlinks; echo for now ([#35](https://github.com/p6m7g8/p6df-aws/issues/35)) ([d7a1393](https://github.com/p6m7g8/p6df-aws/commit/d7a139371b27af180054a88d46620f4dbfc41e08))
+* **lint:** replaces cfn_nag (ruby gem) w/ cfn-guard (cargo crate) ([#34](https://github.com/p6m7g8/p6df-aws/issues/34)) ([2743bd3](https://github.com/p6m7g8/p6df-aws/commit/2743bd3081c85856c9a3923475896d85cb405a44))
+* **README:** updates generator ([#31](https://github.com/p6m7g8/p6df-aws/issues/31)) ([bff49f0](https://github.com/p6m7g8/p6df-aws/commit/bff49f00ca726b24ebb0ce00854d03392a91996b))
+* **vscode:** splits vscode extensions to their languages ([#36](https://github.com/p6m7g8/p6df-aws/issues/36)) ([d308b97](https://github.com/p6m7g8/p6df-aws/commit/d308b9758e7fa459249557902afa55cac2d6259f))
+* **ws:** indents ([7957188](https://github.com/p6m7g8/p6df-aws/commit/7957188ca9d508b1fb0a8e8b9bb37ca1be57a03f))
+* Coc -> .github ([cca4313](https://github.com/p6m7g8/p6df-aws/commit/cca43133ed0a662085cb46beb92a31e3182cb505))
+
 ## [2.1.0](https://github.com/p6m7g8/p6df-aws/compare/v2.0.0...v2.1.0) (2020-12-06)
 
 
