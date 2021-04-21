@@ -50,7 +50,7 @@
 - p6df::modules::aws::init()
 - p6df::modules::aws::langs()
 - p6df::modules::aws::langs::go()
-- p6df::modules::aws::langs::node()
+- p6df::modules::aws::langs::js()
 - p6df::modules::aws::langs::python()
 - p6df::modules::aws::langs::ruby()
 - p6df::modules::aws::langs::rust()
