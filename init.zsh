@@ -8,7 +8,7 @@
 p6df::modules::aws::deps() {
   ModuleDeps=(
     p6m7g8/p6df-docker
-    p6m7g8/p6df-java p6m7g8/p6df-node p6m7g8/p6df-python p6m7g8/p6df-go p6m7g8/p6df-ruby p6m7g8/p6df-rust
+    p6m7g8/p6df-java p6m7g8/p6df-js p6m7g8/p6df-python p6m7g8/p6df-go p6m7g8/p6df-ruby p6m7g8/p6df-rust
     p6m7g8/p6aws
     aws/aws-codebuild-docker-images
   )
@@ -69,11 +69,11 @@ p6df::modules::aws::external::brew() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::aws::langs::node()
+# Function: p6df::modules::aws::langs::js()
 #
 #>
 ######################################################################
-p6df::modules::aws::langs::node() {
+p6df::modules::aws::langs::js() {
 
   npm install -g aws-sdk
   npm install -g @aws-amplify/cli --verbose
@@ -150,7 +150,7 @@ p6df::modules::aws::langs::rust() {
 ######################################################################
 p6df::modules::aws::langs() {
 
-  p6df::modules::aws::langs::node
+  p6df::modules::aws::langs::js:
   p6df::modules::aws::langs::python
   p6df::modules::aws::langs::go
   p6df::modules::aws::langs::ruby
@@ -207,6 +207,7 @@ p6df::modules::aws::init() {
 #
 # Function: p6df::modules::aws::prompt::line()
 #
+#  Depends:	 p6_string
 #>
 ######################################################################
 p6df::modules::aws::prompt::line() {
