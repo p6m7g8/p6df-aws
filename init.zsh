@@ -150,7 +150,7 @@ p6df::modules::aws::langs::rust() {
 ######################################################################
 p6df::modules::aws::langs() {
 
-  p6df::modules::aws::langs::js:
+  p6df::modules::aws::langs::js
   p6df::modules::aws::langs::python
   p6df::modules::aws::langs::go
   p6df::modules::aws::langs::ruby
