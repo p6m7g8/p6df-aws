@@ -180,11 +180,11 @@ p6df::modules::aws::home::symlink() {
     cd .aws
     for file in $P6_DFZ_SRC_DIR/$USER/home-private/aws/*; do
       echo ln -fs $file .
-      #      ln -fs $file .
+      ln -fs $file .
     done
 
     echo ln -fs $P6_DFZ_SRC_DIR/p6m7g8/p6df-aws/share/cli
-    #    ln -fs $P6_DFZ_SRC_DIR/p6m7g8/p6df-aws/share/cli
+    ln -fs $P6_DFZ_SRC_DIR/p6m7g8/p6df-aws/share/cli
   )
 }
 
